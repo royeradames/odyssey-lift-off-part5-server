@@ -2,6 +2,8 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
   type Query {
+    "List all crew members"
+    crew: [CrewMember!]!
     "Query to get tracks array for the homepage grid"
     tracksForHome: [Track!]!
     "Fetch a specific track, provided a track's ID"
@@ -13,6 +15,19 @@ const typeDefs = gql`
   type Mutation {
     "Increment the number of views of a given track, when the track card is clicked"
     incrementTrackViews(id: ID!): IncrementTrackViewsResponse!
+  }
+
+  "Information about the crew member"
+  type CrewMember {
+    crewId: ID!
+    "The title of the crew"
+    position: String
+    "Name of the crew member"
+    name: String
+    "Short description of the crew member"
+    bio: String
+    "Crew member image"
+    img: String
   }
 
   type IncrementTrackViewsResponse {
